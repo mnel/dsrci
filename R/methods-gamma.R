@@ -36,5 +36,7 @@ ci.gamma <- function(x, w, level,
   } else {
     ci <- asht::wspoissonTest(x, w, conf.level = level, wmtype = type)[['conf.int']]
   }
+  attr(ci, "estimate") <- y
+  attr(ci, "level") <- level
   ci
 }

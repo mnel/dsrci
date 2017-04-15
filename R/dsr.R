@@ -86,6 +86,11 @@ dsr <- function(x, n, w,
   errorNA(x)
   errorNA(n)
   errorNA(w)
+  # lengths
+  if(length(unique(lengths(list(x,n,w))))!=1){
+    stop("'x','n' and 'w' must have the same lengths")
+  }
+  
   # method argument
   ci.method <- match.arg(ci.method)
   # recalculate weights

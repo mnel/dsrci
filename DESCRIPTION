@@ -16,3 +16,4 @@ RoxygenNote: 6.0.1
 Imports: asht,
     stats,
     exactci
+Suggests: testthat
