@@ -9,11 +9,14 @@ Description: Constructs confidence intervals on directly standardised rates
   via several parameterizations.
 License: GPL (>= 2)
 Roxygen: list(markdown = TRUE)
-URL: http://github.com/mnel/stdrate
-BugReports: http://github.com/mnel/stdrate/issues
+URL: http://github.com/mnel/dsrci
+BugReports: http://github.com/mnel/dsrci/issues
 Encoding: UTF-8
 RoxygenNote: 6.0.1
 Imports: asht,
     stats,
     exactci
-Suggests: testthat
+Suggests: testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

@@ -1,0 +1,36 @@
+---
+title: "Methods used in `dsrci` to construct confidence intervals for Directly Standardized Rates."
+author: "Michael Nelson"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Notation
+
+Let $x_1, \ldots, x_k$ be the cell counts  with associated random variables $X_1, \ldots, X_n$, $n_1, \ldots, n_k$ be the number of person-years for each cell and assume $X_i~\mathcal{P}\left(\theta_i\right)$.
+
+Let $c_i, \ldots, c_k$ be the number of person-years in a standard population. 
+
+Let the weight for the $i$th cell be
+
+$$
+w_i = \frac{c_i}{n_i\left(\sum_{j=1}^k{c_j}\right)}
+$$
+The directly standardized rate (DSR) can be calculated as
+
+$$
+y = \sum_{i=1}^k w_ix_i
+$$
+An estimate of the variance of the DSR is
+
+$$
+\upsilon = \sum_{i=1}^k w_i^2 x_i
+$$
+Let $Y = \sum_{i=1}^k w_i X_i$, and $E\left[Y\right] = \mu = \sum_{i=1}^k w_i \theta_i$. 
+
+When constructing a confidence interval for a DSR, we are interested in a  confidence interval on $\mu$.
+
