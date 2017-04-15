@@ -28,7 +28,7 @@ ci.asymptotic <- function(x, w, level,
   trans <- match.arg(trans)
   # level to alpha
   alph <- alpha(level)
-  z <- stats::qnorm(alpha)
+  z <- stats::qnorm(alph)
   # recalculate estimate
   y <- sum(x*w)
   v <- sum(x*w^2)
@@ -37,7 +37,7 @@ ci.asymptotic <- function(x, w, level,
     "none" = y + z*sqrt(v),
     "log" = stats::qlnorm(alph, log(y), sqrt(v/y^2)),
     "cube.root" =  (y^(1/3) + z*sqrt(v/(9*(y^(4/3)))))^3,
-    "skew" =   y + (z - edgeworth.skew(x,w,z))*sqrt(v))
+    "skew" =   y + (z - edgeworth.skew(x,w,rev(z)))*sqrt(v))
   attr(ci, "estimate") <- y
   attr(ci, "level") <- level
   ci

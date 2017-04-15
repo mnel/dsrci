@@ -4,7 +4,7 @@ author: "Michael Nelson"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  \VignetteIndexEntry{Methods used in `dsrci` to construct confidence intervals for Directly Standardized Rates.}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -32,5 +32,121 @@ $$
 $$
 Let $Y = \sum_{i=1}^k w_i X_i$, and $E\left[Y\right] = \mu = \sum_{i=1}^k w_i \theta_i$. 
 
-When constructing a confidence interval for a DSR, we are interested in a  confidence interval on $\mu$.
+
+# Constructing confidence intervals
+
+Fay & Feuer (1997), Tiwari et al (2006) and Ng et al (2008) describe and compare a number of confidence interval methods.
+
+Throughout, let $L\left(y\right), U\left(y\right)$ be the lower  and upper bounds of a $100(1-\alpha)\%$ confidence interval.
+
+The example data from `example(wspoissonTest, package = 'asht')`
+
+```{r init}
+library(dsrci)
+## from example(wspoissonTest, package = 'asht')
+## birth data on Down's syndrome from Michigan, 1950-1964
+## see Table II  of Fay and Feuer (1997)
+## xfive= counts for mothers who have had 5 or more children
+## nfive and ntotal are number of live births 
+xfive <- c(0, 8, 63, 112, 262, 295)
+nfive <- c(327, 30666, 123419, 149919, 104088, 34392)
+ntotal <- c(319933, 931318, 786511, 488235, 237863, 61313)
+```
+
+## Asymptotic method `ci.method = "asymptotic"`
+
+### Normal approxmation (`trans = "none"`)
+
+
+Let $\phi^{-1}\left(p\right)$ is the $p$th percentile of the Standard Normal distribution. 
+
+$$
+L(y) = y +  \phi^{{-1}}\left(\alpha/2\right) \sqrt{\upsilon}
+$$
+$$
+U(y) = y +  \phi^{{-1}}\left(1-\alpha/2\right) \sqrt{\upsilon}
+$$
+
+```{r asymptotic-none}
+# ci.method = "asymptotic", trans = "none"
+# are the default values
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95)
+# you can also call ci.asymptotic directly, 
+# only when weights = weights not standard population counts
+# this returns the results without applying a multiplicative
+# factor
+ci.asymptotic(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95)
+```
+
+
+### Log transformation (`trans = "log"`)
+
+Using the delta method, 
+
+$$
+\widehat{{\rm var}} \left(\ln Y \right) = \frac{\upsilon}{y^2}
+$$
+$$
+L(y) = e^{y +  \phi^{{-1}}\left(\alpha/2\right) \sqrt{\upsilon/y^2}}
+$$
+$$
+U(y) = e^{y +  \phi^{{-1}}\left(1-\alpha/2\right) \sqrt{\upsilon/y^2}}
+$$
+
+```{r asymptotic-log}
+# ci.method = "asymptotic", trans = "log"
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, trans = "log")
+# using ci.asymptotic
+ci.asymptotic(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, trans = "log")
+```
+
+### Cube root (`trans = "cube.root"`)
+Using the delta method, 
+
+$$
+\widehat{{\rm var}} \left(Y^{1/3} \right) = \frac{\upsilon}{9y^{4/3}}
+$$
+$$
+L(y) = \left(y +  \phi^{{-1}}\left(\alpha/2\right) \sqrt{\frac{\upsilon}{9y^{4/3}}}\right)^3
+$$
+$$
+U(y) = \left(y +  \phi^{{-1}}\left(1-\alpha/2\right) \sqrt{\frac{\upsilon}{9y^{4/3}}}\right)^3
+$$
+
+```{r asymptotic-cube}
+# ci.method = "asymptotic", trans = "cube.root"
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, trans = "cube.root")
+# using ci.asymptotic
+ci.asymptotic(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, trans = "cube.root")
+```
+
+### Edgeworth correction for skew (`trans = "skew"`)
+Let
+$$
+g\left(t\right) = \frac{\sqrt{\beta_1}}{6} + \left(\frac{\beta_2-3}{8}+\frac{15\beta^1}{72} \right)t -
+\frac{\sqrt{\beta_1}}{6}t^2 - \left(\frac{\beta_2-3}{24}+\frac{5\beta^1}{36} \right)t^3 
+- \frac{\beta_1}{72}t^5
+$$
+Where $\sqrt{\beta_1}$, $\beta_2$ are the coefficients of skewness and kurtosis of $Y$ - with sample estimates
+
+$$
+\sqrt{\hat{\beta_1}} = \frac{\sum_{i=1}^{k}w^3_i x_i}{\upsilon^{3/2}}
+$$
+
+$$
+\hat{\beta_2} = \frac{\sum_{i=1}^{k}{w^4_i x_i \left(1+3x_i\right)}}{\upsilon^2}
+$$
+
+$$
+L(y) = y +  \left(\phi^{{-1}}\left(\alpha/2\right) - g(\phi^{{-1}}\left(1-\alpha/2\right)\right) \sqrt{\upsilon}
+$$
+$$
+L(y) = y +  \left(\phi^{{-1}}\left(1-\alpha/2\right) - g(\phi^{{-1}}\left(\alpha/2\right)\right) \sqrt{\upsilon}
+$$
+```{r asymptotic-skew}
+# ci.method = "asymptotic", trans = "skew"
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, trans = "skew")
+# using ci.asymptotic
+ci.asymptotic(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, trans = "skew")
+```
 

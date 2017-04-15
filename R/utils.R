@@ -22,7 +22,7 @@ to.list <- function(htest){
 # g
 `edgeworth.skew` <- function(x,w,t){
   v <- sum(x*w^2)
-  b1 <- sum(x*w^3) / (v^(3/2))
+  b1 <- (sum(x*w^3) / (v^(3/2)))^2
   b2 <- sum((x*w^4)*(1+3*x))/(v^2)
   sqrt(b1)/6 + ((b2-3)/8 +15*b1/72) - 
     (sqrt(b1)/6)*t^2 - ((b2-3)/24 + 4*b1/36)*t^3 -
