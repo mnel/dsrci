@@ -41,12 +41,13 @@ to scale the final estimate \cr
 }
 }
 \description{
-Calculate a directly standardised rate with confidence interval
-based on a specified method.
+Calculate a directly standardised rate with
+confidence interval based on a specified method.
 }
 \details{
-Five groupds of methods can be specified using \code{'ci.method'}, with variations on each
-depending on the method. The five groups are:
+Five groupds of methods can be specified using
+\code{'ci.method'}, with variations on each depending on the method.
+five groups are:
 
 \tabular{ll}{
 \code{'asymptotic'} \tab Using the normal approximation of the
@@ -66,19 +67,28 @@ proposed by Swift (1995). \cr
 }
 }
 \references{
-Dobson, AJ, Kuulasmaa, K, Eberle, E and Scherer, J (1991) 'Confidence intervals
-for weighted sums of Poisson parameters', \emph{Statistics in Medicine}, \strong{10}: 457—462.
+Dobson, AJ, Kuulasmaa, K, Eberle, E and Scherer, J (1991)
+'Confidence intervals for weighted sums of Poisson parameters',
+\emph{Statistics in Medicine}, \strong{10}: 457--462.
+\doi{doi:10.1002/sim.4780100317}
 
-Swift, MB (1995). 'Simple confidence intervals for standardized rates based on
-the approximate bootstrap method', \emph{Statistics in Medicine}, \strong{14}, 1875—1888.
+Swift, MB (1995). 'Simple confidence intervals for
+standardized rates based on the approximate bootstrap method',
+\emph{Statistics in Medicine}, \strong{14}, 1875--1888.
+\doi{doi:10.1002/sim.4780141704}.
 
-Fay & Feuer (1997). 'Confidence intervals for directly standardized rates:
-a method based on the gamma distribution.' \emph{Statistics in Medicine}. \strong{16}: 791-801.
+Fay & Feuer (1997). 'Confidence intervals for directly
+standardized rates: a method based on the gamma distribution.
+Statistics in Medicine*. \strong{16}: 791--801.
+\url{https://doi.org10.1002/(SICI)1097-0258(19970415)16:7<791::AID-SIM500>3.0.CO;2-\%23}
 
-Tiwari, Clegg, & Zou (2006). 'Efficient interval estimation for age-adjusted
-cancer rates.'  \emph{Statistical Methods in Medical Research} \strong{15}: 547-569.
+Tiwari, Clegg, & Zou (2006). 'Efficient interval estimation
+for age-adjusted cancer rates.'
+\emph{Statistical Methods in Medical Research} \strong{15}: 547--569.
+\doi{doi:10.1177/0962280206070621}
 
-Ng, Filardo, & Zheng (2008). 'Confidence interval estimating procedures for
-standardized incidence rates.' \emph{Computational Statistics and Data Analysis}
-\strong{52} 3501-3516.
+Ng, Filardo, & Zheng (2008). 'Confidence interval estimating
+procedures for standardized incidence rates.'
+\emph{Computational Statistics and Data Analysis} \strong{52} 3501-3516.
+\doi{doi:10.1016/j.csda.2007.11.004}
 }

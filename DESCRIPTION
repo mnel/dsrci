@@ -1,11 +1,11 @@
 Package: dsrci
 Type: Package
-Title: Confidence Intervals On Directly Standardized Rates For Several Parameterizations
+Title: Confidence Intervals on Directly Standardized Rates for Several Parameterizations
 Version: 0.1
 Date: 2017-04-09
 Author: Michael Nelson
 Maintainer: Michael Nelson <michael.nelson.r.pkg@gmail.com>
-Description: Constructs confidence intervals on directly standardised rates 
+Description: Constructs confidence intervals on directly standardized rates 
   via several parameterizations.
 License: GPL (>= 2)
 Roxygen: list(markdown = TRUE)

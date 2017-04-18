@@ -20,31 +20,34 @@ ci.gamma(x, w, level, type = c("max", "midp", "mean", "minmaxavg", "tcz"),
 \item{...}{passed to \code{asht::wspoissonTest} when type = \code{'midp'}}
 }
 \description{
-Confidence intervals for directly standardized rates based on the gamma distribution.
+Confidence intervals for directly standardized
+rates based on the gamma distribution.
 }
 \details{
-Calls \code{asht::wspoissonTest} with the appropriate type modification for the gamma confidence interval (\code{wmtype}) and
+Calls \code{asht::wspoissonTest} with the appropriate
+type modification for the gamma confidence interval (\code{wmtype}) and
 \code{'mid.p'} value. Note that the \code{'mid.p'} method uses \code{wmtype = 'max'}.
 }
 \references{
-Fay  MP (2017). '\code{asht}: Applied Statistical Hypothesis Tests'. \emph{\code{R} package version 0.9.}
-https://CRAN.R-project.org/package=asht
+Fay  MP (2017). '\code{asht}: Applied Statistical Hypothesis Tests'.
+\emph{\code{R} package version 0.9.}  \CRANpkg{ahst}
 
-Fay & Feuer (1997).
-'Confidence intervals for directly standardized rates:
-a method based on the gamma distribution.' \emph{Statistics in Medicine}. \strong{16}: 791-801.
+Fay & Feuer (1997). 'Confidence intervals for directly
+standardized rates: a method based on the gamma distribution.'
+\emph{Statistics in Medicine}. \strong{16}: 791--801.
+\url{https://doi.org/10.1002/(SICI)1097-0258(19970415)16:7<791::AID-SIM500>3.0.CO;2-\%23}
 
-Fay & Kim (2017).
-'Confidence intervals for directly standardized rates
-using mid-p gamma intervals.' \emph{Biometrical Journal}. doi:10.1002/bimj.201600111.
+Fay & Kim (2017). 'Confidence intervals for directly
+standardized rates using mid-p gamma intervals.'
+\emph{Biometrical Journal}. \doi{doi:10.1002/bimj.201600111}.
 
-Ng, Filardo, & Zheng (2008).
-'Confidence interval estimating procedures for
-standardized incidence rates.' \emph{Computational Statistics and Data Analysis} \strong{52}: 3501-3516.
+Ng, Filardo, & Zheng (2008). 'Confidence interval estimating procedures for
+standardized incidence rates.' \emph{Computational Statistics and Data Analysis}
+\strong{52} 3501--3516. \doi{doi:10.1016/j.csda.2007.11.004}
 
-Tiwari, Clegg, & Zou (2006).
-'Efficient interval estimation for age-adjusted cancer rates.'
-\emph{Statistical Methods in Medical Research} \strong{15}: 547-569.
+Tiwari, Clegg, & Zou (2006). 'Efficient interval estimation for age-adjusted
+cancer rates.'  \emph{Statistical Methods in Medical Research} \strong{15}: 547--569.
+\doi{doi:10.1177/0962280206070621}
 }
 \seealso{
 \code{\link[asht]{wspoissonTest}}

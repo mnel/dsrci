@@ -3,7 +3,8 @@
 \name{ci.moments}
 \alias{ci.moments}
 \alias{ci.dobson}
-\title{Confidence intervals for Directly Standardised Rates using moment match methods}
+\title{Confidence intervals for Directly Standardised Rates using
+moment match methods}
 \usage{
 ci.moments(x, w, level, type = c("dobson", "boise.monson", "normal",
   "wilson.hilferty", "byar", "midp", "approx.midp", "simple.midp"))
@@ -15,36 +16,42 @@ ci.moments(x, w, level, type = c("dobson", "boise.monson", "normal",
 
 \item{level}{confidence level for the returned confidence interval}
 
-\item{type}{type of approximation for the poisson confidence interval of the unweighted sum}
+\item{type}{type of approximation for the poisson confidence
+interval of the unweighted sum}
 }
 \value{
-a vector with the lower and upper bound of the confidence interval.
-The estimate of the directly standardised rate and the level of confidence are
-returned as attributes to this vector
+a vector with the lower and upper bound of the confidence
+interval.  The estimate of the directly standardised rate and the
+level of confidence are returned as attributes to this vector.
 }
 \description{
-Confidence intervals for directly standardized rates based on
-the approximation proposed by Dobson, Kuulasmaa, Eberle and Scherer (1991).
-In addition to the method proposed by Dobson et al, the various approximations
-implemented by Ng, Filardo & Zheng (2008) are implemented.
+Confidence intervals for directly standardized
+rates based on the approximation proposed by Dobson, Kuulasmaa,
+Eberle and Scherer (1991). In addition to the method proposed by
+Dobson et al, the various approximations implemented by Ng,
+Filardo & Zheng (2008) are implemented.
 }
 \details{
-Following Dobson et al (1991), an approximate confidence interval can be obtained as a
-linear function of the confidence interval for a single Poisson paramenter
-(\eqn{X = \sum_{i=1}^k X_i}) where the confidence interval for this \emph{unweighted}
-sum of poisson parameters \eqn{\sum_{i=1}^k \theta_i} is
-\eqn{\left(X_L,X_U \right)}{(X_L,X_U)}.
-An approximate confidence interval for the \emph{weighted} sum of \eqn{\theta} is
+Following Dobson et al (1991), an approximate
+confidence interval can be obtained as a linear function of the
+confidence interval for a single Poisson paramenter
+(\eqn{X = \sum_{i=1}^k X_i}) where the confidence interval
+for this \emph{unweighted}  sum of poisson parameters
+\eqn{\sum_{i=1}^k \theta_i} is  \eqn{\left(X_L,X_U \right)}{(X_L,X_U)}.
+An approximate confidence interval for the \emph{weighted}
+sum of \eqn{\theta} is
 \deqn{T_L = Y + \sqrt{\frac{\upsilon}{y}}\left(X_L - X\right)}{T_L=\sqrt(\upsilon/y)(X_L-X)}
 \deqn{T_U = Y + \sqrt{\frac{\upsilon}{y}}\left(X_U - X\right)}{T_U=\sqrt(\upsilon/y)(X_U-X)}
-A number of methods for estimating \eqn{\left(X_L,X_U\right)}{(X_L,X_U)} are implemented in \code{dsrci}
+A number of methods for estimating \eqn{\left(X_L,X_U\right)}{(X_L,X_U)}
+are implemented in \code{dsrci}
 \itemize{
 \item \strong{Dobson (exact)}: \code{type = "dobson"} (Ng et al method M1)
 \item \strong{Boise-Monson}: \code{type = "boise.monson"} (Ng et al method M2)
 \item \strong{Normal approximation}: \code{type = "normal"} (Ng et al method M3)
 \item \strong{Wilson-Hilferty}: \code{type = "wilson.hilferty"} (Ng et al method M4)
 \item \strong{Byar}: \code{type = "byar"} (Ng et al method M5)
-\item \strong{Exact Mid-p} \code{type = "midp"} (Ng et al method M7) - implemented using \code{exactci::poison.exact}
+\item \strong{Exact Mid-p} \code{type = "midp"} (Ng et al method M7) - implemented using
+\code{exactci::poison.exact}
 \item \strong{Approximation to Mid-p}: \code{type = "approx.midp"} (Ng et al method M8)
 \item \strong{Simple approximation to Mid-p}: \code{type = "simple.midp"} (Ng et al method M9)
 }
@@ -52,11 +59,15 @@ A number of methods for estimating \eqn{\left(X_L,X_U\right)}{(X_L,X_U)} are imp
 \references{
 Dobson, AJ, Kuulasmaa, K, Eberle, E and Scherer, J (1991)
 'Confidence intervals for weighted sums of Poisson parameters',
-\emph{Statistics in Medicine}, \strong{10}: 457—462.
+\emph{Statistics in Medicine}, \strong{10}: 457--462.
+\doi{doi:10.1002/sim.4780100317}
 
-Ng, Filardo, & Zheng (2008). 'Confidence interval estimating procedures for standardized incidence rates.'
-\emph{Computational Statistics and Data Analysis} \strong{52}: 3501-3516.
+Ng, Filardo, & Zheng (2008). 'Confidence interval estimating
+procedures for standardized incidence rates.'
+\emph{Computational Statistics and Data Analysis} \strong{52} 3501--3516.
+\doi{doi:10.1016/j.csda.2007.11.004}
 
-Fay MP (2010). 'Two-sided Exact Tests and Matching Confidence Intervals for Discrete Data'.
-\emph{R Journal} \strong{2}(1):53-58.
+Fay MP (2010). 'Two-sided Exact Tests and Matching Confidence
+Intervals for Discrete Data'.  \emph{R Journal} \strong{2}(1):53--58.
+\CRANpkg{exactci}
 }

@@ -16,9 +16,9 @@ ci.asymptotic(x, w, level, trans = c("none", "log", "cube.root", "skew"))
 \item{trans}{transformation to apply}
 }
 \value{
-a vector with the lower and upper bound of the confidence interval.
-The estimate of the directly standardised rate and the level of confidence are
-returned as attributes to this vector
+a vector with the lower and upper bound of the confidence
+interval.The estimate of the directly standardised rate and the
+of confidence are returned as attributes to this vector
 }
 \description{
 Confidence intervals for directly standardized rate
@@ -27,7 +27,8 @@ around an MLE is to use a normal approximation of the MLE or transformed
 MLE.
 }
 \details{
-Four different transformations are implented - following Ng et al (2008).
+Four different transformations are implented -
+following Ng et al (2008).
 \itemize{
 \item none (no transformation)
 \item log
@@ -36,6 +37,8 @@ Four different transformations are implented - following Ng et al (2008).
 }
 }
 \references{
-Ng, Filardo, & Zheng (2008). 'Confidence interval estimating procedures for standardized incidence rates.' *
-Computational Statistics and Data Analysis* \strong{52} 3501-3516.
+Ng, Filardo, & Zheng (2008). 'Confidence interval estimating
+procedures for standardized incidence rates.'
+\emph{Computational Statistics and Data Analysis} \strong{52} 3501--3516.
+\doi{doi:10.1016/j.csda.2007.11.004}
 }

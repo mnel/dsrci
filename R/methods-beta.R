@@ -14,11 +14,13 @@
 #' @references 
 #' Ng, Filardo, & Zheng (2008). 
 #' 'Confidence interval estimating procedures for 
-#' standardized incidence rates.' *Computational Statistics and Data Analysis* **52**: 3501-3516.
+#' standardized incidence rates.' *Computational Statistics and Data Analysis* **52**: 3501--3516.
+#' \doi{doi:10.1016/j.csda.2007.11.004}
 #' 
 #' Tiwari, Clegg, & Zou (2006). 
 #' 'Efficient interval estimation for age-adjusted cancer rates.'
-#'  *Statistical Methods in Medical Research* **15**: 547-569.
+#'  *Statistical Methods in Medical Research* **15**: 547--569. 
+#' \doi{doi:10.1177/0962280206070621}
 #' 
 #' @importFrom stats qbeta
 #' @export

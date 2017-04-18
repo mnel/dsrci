@@ -32,9 +32,11 @@ Ng et al (2008).
 \references{
 Ng, Filardo, & Zheng (2008).
 'Confidence interval estimating procedures for
-standardized incidence rates.' \emph{Computational Statistics and Data Analysis} \strong{52}: 3501-3516.
+standardized incidence rates.' \emph{Computational Statistics and Data Analysis} \strong{52}: 3501--3516.
+\doi{doi:10.1016/j.csda.2007.11.004}
 
 Tiwari, Clegg, & Zou (2006).
 'Efficient interval estimation for age-adjusted cancer rates.'
-\emph{Statistical Methods in Medical Research} \strong{15}: 547-569.
+\emph{Statistical Methods in Medical Research} \strong{15}: 547--569.
+\doi{doi:10.1177/0962280206070621}
 }

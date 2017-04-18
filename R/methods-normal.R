@@ -5,17 +5,20 @@
 #' estimate. A common approach for constructing confidence intervals 
 #' around an MLE is to use a normal approximation of the MLE or transformed
 #' MLE. 
-#' @details Four different transformations are implented - following Ng et al (2008).
+#' @details Four different transformations are implented - 
+#' following Ng et al (2008).
 #' - none (no transformation) 
 #' - log
 #' - cubic root
 #' - Edgeworth correction for skewness
-#' @return a vector with the lower and upper bound of the confidence interval.
-#' The estimate of the directly standardised rate and the level of confidence are 
-#' returned as attributes to this vector 
+#' @return a vector with the lower and upper bound of the confidence 
+#' interval.The estimate of the directly standardised rate and the 
+#' of confidence are returned as attributes to this vector 
 #' @references 
-#' Ng, Filardo, & Zheng (2008). 'Confidence interval estimating procedures for standardized incidence rates.' *
-#' Computational Statistics and Data Analysis* **52** 3501-3516.
+#' Ng, Filardo, & Zheng (2008). 'Confidence interval estimating 
+#' procedures for standardized incidence rates.' 
+#' *Computational Statistics and Data Analysis* **52** 3501--3516.
+#'  \doi{doi:10.1016/j.csda.2007.11.004}
 #' @param x a vector of counts
 #' @param w a vector of weights
 #' @param level the level of confidence
@@ -49,12 +52,15 @@ ci.asymptotic <- function(x, w, level,
 #' 
 #' @description Confidence intervals for directly standardized rates 
 #' using the approximate bootstrap method  derived by Swift (1995)
-#' @return a vector with the lower and upper bound of the confidence interval.
-#' The estimate of the directly standardised rate and the level of confidence are 
-#' returned as attributes to this vector 
+#' @return a vector with the lower and upper bound of the 
+#' confidence interval.The estimate of the directly standardised 
+#' rate and the level of confidence are returned as attributes 
+#'  this vector 
 #' @references 
-#' Swift, MB (1995). 'Simple confidence intervals for standardized rates based on 
-#' the approximate bootstrap method', *Statistics in Medicine*, **14**, 1875—1888.
+#' Swift, MB (1995). 'Simple confidence intervals for 
+#' standardized rates based on the approximate bootstrap method', 
+#' *Statistics in Medicine*, **14**, 1875--1888.
+#' \doi{doi:10.1002/sim.4780141704}. 
 #' @param x a vector of counts
 #' @param w a vector of weights
 #' @param level the level of confidence
