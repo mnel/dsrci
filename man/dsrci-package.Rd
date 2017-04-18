@@ -22,8 +22,7 @@ Ng, Filardo, & Zheng (2008). 'Confidence interval estimating procedures for stan
 
 Tiwari, Clegg, & Zou (2006). 'Efficient interval estimation for age-adjusted cancer rates.' \emph{Statistical Methods in Medical Research} \strong{15}: 547-569.
 
-Swift, MB (1995). 'Simple confidence intervals for standardized rates based on
-the approximate bootstrap method', \emph{Statistics in Medicine}, \strong{14}, 1875—1888.
+Swift, MB (1995). 'Simple confidence intervals for standardized rates based on the approximate bootstrap method', \emph{Statistics in Medicine}, \strong{14}, 1875—1888.
 
 Dobson, AJ, Kuulasmaa, K, Eberle, E and Scherer, J (1991)
 'Confidence intervals for weighted sums of Poisson parameters',
