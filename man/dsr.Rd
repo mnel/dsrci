@@ -32,7 +32,8 @@ An object of class "\code{dsr}" is a list containing the following components:
 \code{lower} \tab lower bound of the confidence interval \cr
 \code{upper} \tab upper bound of the confidence interval \cr
 \code{level} \tab the level of confidence \cr
-\code{method} \tab method used to calcalate the confidence interval \cr
+\code{ci.method} \tab method used to calcalate the confidence interval \cr
+\code{method.arg} \tab additional argument passed to ci method function \cr
 \code{call} \tab the matched call \cr
 \code{mult} \tab The multiplicative factor
 to scale the final estimate \cr

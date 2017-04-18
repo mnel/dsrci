@@ -27,6 +27,9 @@ Calls \code{asht::wspoissonTest} with the appropriate type modification for the 
 \code{'mid.p'} value. Note that the \code{'mid.p'} method uses \code{wmtype = 'max'}.
 }
 \references{
+Fay  MP (2017). '\code{asht}: Applied Statistical Hypothesis Tests'. \emph{\code{R} package version 0.9.}
+https://CRAN.R-project.org/package=asht
+
 Fay & Feuer (1997).
 'Confidence intervals for directly standardized rates:
 a method based on the gamma distribution.' \emph{Statistics in Medicine}. \strong{16}: 791-801.

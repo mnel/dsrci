@@ -35,9 +35,12 @@
 #' Dobson, AJ, Kuulasmaa, K, Eberle, E and Scherer, J (1991) 
 #' 'Confidence intervals for weighted sums of Poisson parameters', 
 #' *Statistics in Medicine*, **10**: 457—462.
-#' 
+#'  
 #' Ng, Filardo, & Zheng (2008). 'Confidence interval estimating procedures for standardized incidence rates.' 
 #' *Computational Statistics and Data Analysis* **52**: 3501-3516.
+#' 
+#' Fay MP (2010). 'Two-sided Exact Tests and Matching Confidence Intervals for Discrete Data'.  
+#' *R Journal* **2**(1):53-58.
 #' @importFrom exactci poisson.exact
 #' @export
 ci.moments <- function(x, w, level, type = 

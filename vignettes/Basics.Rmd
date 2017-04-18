@@ -4,7 +4,7 @@ author: "Michael Nelson"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  \VignetteIndexEntry{Methods used in `dsrci` to construct confidence intervals for Directly Standardized Rates.}
+  %\VignetteIndexEntry{Methods used in `dsrci` to construct confidence intervals for Directly Standardized Rates.}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -266,9 +266,8 @@ ci.beta(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, type = "cc")
 # a function to loop through methods and return a data.frame
 loop_methods <- function(list, level = 0.95, x = xfive, n = nfive, w= ntotal, mult = 1e5, ci.method){
   # loop through "types"
-  results <- lapply(list, dsr, level = level, x = x, w = w, n = n, mult = mult, ci.method = ci.method)
+  results <- do.call(rbind,lapply(list, dsr, level = level, x = x, w = w, n = n, mult = mult, ci.method = ci.method))
   # combine into a single data.frame
-  results <- do.call(rbind, lapply(results, as.data.frame))
 }
 # transformations implemented for "asymptotic"
 trans <- c("none", "log", "cube.root", "skew")
@@ -285,7 +284,7 @@ b.types <- c("tcz", "cc")
 beta.results <- loop_methods(b.types, ci.method = "beta")
 # there are no "types" for the approximate bootstrap
 # method - no need to loop
-boot.results <- as.data.frame(dsr(xfive, nfive, ntotal, mult = 1e5, ci.method = 'bootstrap'))
+boot.results <- dsr(xfive, nfive, ntotal, mult = 1e5, ci.method = 'bootstrap')
 # combine into a single data.frame
 all.results <- rbind(asymp.results, moments.results,
                      gamma.results, beta.results,

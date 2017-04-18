@@ -10,6 +10,9 @@
 #' @param type type of modification for the gamma confidence interval
 #' @param ... passed to `asht::wspoissonTest` when type = `'midp'`
 #' @references 
+#' Fay  MP (2017). '`asht`: Applied Statistical Hypothesis Tests'. *`R` package version 0.9.* 
+#' https://CRAN.R-project.org/package=asht
+#' 
 #' Fay & Feuer (1997). 
 #' 'Confidence intervals for directly standardized rates: 
 #' a method based on the gamma distribution.' *Statistics in Medicine*. **16**: 791-801.
@@ -27,6 +30,7 @@
 #'  *Statistical Methods in Medical Research* **15**: 547-569.
 #' 
 #' @importFrom asht wspoissonTest
+#' @export
 ci.gamma <- function(x, w, level, 
                      type = c("max", "midp", "mean", "minmaxavg", "tcz"),
                      ... ){
@@ -36,7 +40,7 @@ ci.gamma <- function(x, w, level,
   } else {
     ci <- asht::wspoissonTest(x, w, conf.level = level, wmtype = type)[['conf.int']]
   }
-  attr(ci, "estimate") <- y
+  attr(ci, "estimate") <- sum(x*w)
   attr(ci, "level") <- level
   attr(ci, "method.arg") <- type
   ci

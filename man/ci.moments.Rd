@@ -56,4 +56,7 @@ Dobson, AJ, Kuulasmaa, K, Eberle, E and Scherer, J (1991)
 
 Ng, Filardo, & Zheng (2008). 'Confidence interval estimating procedures for standardized incidence rates.'
 \emph{Computational Statistics and Data Analysis} \strong{52}: 3501-3516.
+
+Fay MP (2010). 'Two-sided Exact Tests and Matching Confidence Intervals for Discrete Data'.
+\emph{R Journal} \strong{2}(1):53-58.
 }

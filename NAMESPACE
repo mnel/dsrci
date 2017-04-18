@@ -3,6 +3,7 @@
 export(ci.asymptotic)
 export(ci.beta)
 export(ci.bootstrap)
+export(ci.gamma)
 export(ci.moments)
 export(dsr)
 importFrom(asht,wspoissonTest)

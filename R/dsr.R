@@ -105,36 +105,15 @@ dsr <- function(x, n, w,
     "beta" = ci.beta(x, w, level, ...),
     "bootstrap" = ci.bootstrap(x, w, level, ...))
   
-  z <- list(
-    estimate = sum(x*w) * mult, 
+  data.frame(
+    estimate = attr(ci, "estimate") * mult, 
     lower = ci[1] * mult, 
     upper = ci[2] * mult,
     level = level,
     ci.method = ci.method,
     method.arg = attr(ci, "method.arg"),
-    call = cl, 
     mult = mult,
     strata = length(x))  
-  class(z) = 'dsr'
-  return(z)
+
 }
 
-# A print method for DSR along the lines of print.lm
-print.dsr <- function(object, digits = getOption("digits"),...){
-  cat("\n")
-  cat("Directly standardised rate\n")
-  cat("Call:\n")
-  print(object[['call']])
-  cat("Strata: ",object[['strata']],'\n')
-  cat("Estimate: ", format(object[['estimate']], digits = digits),
-      " per ", format(object[['mult']], big.mark = ',', scientific = FALSE))
-  cat('\n', format(100 * object[['level']]), " percent confidence interval:\n", 
-      " ", paste(format(c(object[['lower']], object[['upper']]), digits=digits), 
-                 collapse = " "), "\n", sep = "")
-}
-
-# As data.frame method
-as.data.frame.dsr <- function(object,...){
-  # return all columns except call
-  as.data.frame(object[-7L])
-}
