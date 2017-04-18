@@ -39,5 +39,6 @@ ci.beta <- function(x, w, level,
     "cc"  = stats::qbeta(alpha(level), f.a(yst,vst), f.b(yst,vst)))
   attr(ci, "estimate") <- y
   attr(ci, "level") <- level
+  attr(ci, "method.arg") <- type
   ci
 }

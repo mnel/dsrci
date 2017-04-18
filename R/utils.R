@@ -9,16 +9,6 @@ errorNA <- function(var){
   if(not.ok) stop("missing values in '",deparse(substitute(var)),"'") else (invisible(NULL))
 }
 
-# Extract relevant infomration from 
-# htest object
-to.list <- function(htest){
-  list(
-    estimate = unname(htest[['estimate']]), 
-    lower =  unname(htest[['conf.int']][1]),
-    upper = unname(htest[['conf.int']][2]))
-  
-}
-
 # g
 `edgeworth.skew` <- function(x,w,t){
   v <- sum(x*w^2)

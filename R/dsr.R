@@ -30,7 +30,8 @@
 #' \code{lower} \tab lower bound of the confidence interval \cr
 #' \code{upper} \tab upper bound of the confidence interval \cr
 #' \code{level} \tab the level of confidence \cr
-#' \code{method} \tab method used to calcalate the confidence interval \cr
+#' \code{ci.method} \tab method used to calcalate the confidence interval \cr
+#' \code{method.arg} \tab additional argument passed to ci method function \cr
 #' \code{call} \tab the matched call \cr
 #' \code{mult} \tab The multiplicative factor 
 #' to scale the final estimate \cr
@@ -110,15 +111,13 @@ dsr <- function(x, n, w,
     upper = ci[2] * mult,
     level = level,
     ci.method = ci.method,
+    method.arg = attr(ci, "method.arg"),
     call = cl, 
     mult = mult,
     strata = length(x))  
   class(z) = 'dsr'
   return(z)
 }
-
-
-
 
 # A print method for DSR along the lines of print.lm
 print.dsr <- function(object, digits = getOption("digits"),...){
@@ -134,4 +133,8 @@ print.dsr <- function(object, digits = getOption("digits"),...){
                  collapse = " "), "\n", sep = "")
 }
 
-
+# As data.frame method
+as.data.frame.dsr <- function(object,...){
+  # return all columns except call
+  as.data.frame(object[-7L])
+}

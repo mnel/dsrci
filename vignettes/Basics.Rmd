@@ -57,16 +57,6 @@ ntotal <- c(319933, 931318, 786511, 488235, 237863, 61313)
 
 ### Normal approxmation (`trans = "none"`)
 
-
-Let $\phi^{-1}\left(p\right)$ is the $p$th percentile of the Standard Normal distribution. 
-
-$$
-L(y) = y +  \phi^{{-1}}\left(\alpha/2\right) \sqrt{\upsilon}
-$$
-$$
-U(y) = y +  \phi^{{-1}}\left(1-\alpha/2\right) \sqrt{\upsilon}
-$$
-
 ```{r asymptotic-none}
 # ci.method = "asymptotic", trans = "none"
 # are the default values
@@ -81,18 +71,6 @@ ci.asymptotic(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95)
 
 ### Log transformation (`trans = "log"`)
 
-Using the delta method, 
-
-$$
-\widehat{{\rm var}} \left(\ln Y \right) = \frac{\upsilon}{y^2}
-$$
-$$
-L(y) = e^{y +  \phi^{{-1}}\left(\alpha/2\right) \sqrt{\upsilon/y^2}}
-$$
-$$
-U(y) = e^{y +  \phi^{{-1}}\left(1-\alpha/2\right) \sqrt{\upsilon/y^2}}
-$$
-
 ```{r asymptotic-log}
 # ci.method = "asymptotic", trans = "log"
 dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, trans = "log")
@@ -103,15 +81,6 @@ ci.asymptotic(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, trans = "log")
 ### Cube root (`trans = "cube.root"`)
 Using the delta method, 
 
-$$
-\widehat{{\rm var}} \left(Y^{1/3} \right) = \frac{\upsilon}{9y^{4/3}}
-$$
-$$
-L(y) = \left(y +  \phi^{{-1}}\left(\alpha/2\right) \sqrt{\frac{\upsilon}{9y^{4/3}}}\right)^3
-$$
-$$
-U(y) = \left(y +  \phi^{{-1}}\left(1-\alpha/2\right) \sqrt{\frac{\upsilon}{9y^{4/3}}}\right)^3
-$$
 
 ```{r asymptotic-cube}
 # ci.method = "asymptotic", trans = "cube.root"
@@ -121,28 +90,6 @@ ci.asymptotic(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, trans = "cube.roo
 ```
 
 ### Edgeworth correction for skew (`trans = "skew"`)
-Let
-$$
-g\left(t\right) = \frac{\sqrt{\beta_1}}{6} + \left(\frac{\beta_2-3}{8}+\frac{15\beta^1}{72} \right)t -
-\frac{\sqrt{\beta_1}}{6}t^2 - \left(\frac{\beta_2-3}{24}+\frac{5\beta^1}{36} \right)t^3 
-- \frac{\beta_1}{72}t^5
-$$
-Where $\sqrt{\beta_1}$, $\beta_2$ are the coefficients of skewness and kurtosis of $Y$ - with sample estimates
-
-$$
-\sqrt{\hat{\beta_1}} = \frac{\sum_{i=1}^{k}w^3_i x_i}{\upsilon^{3/2}}
-$$
-
-$$
-\hat{\beta_2} = \frac{\sum_{i=1}^{k}{w^4_i x_i \left(1+3x_i\right)}}{\upsilon^2}
-$$
-
-$$
-L(y) = y +  \left(\phi^{{-1}}\left(\alpha/2\right) - g(\phi^{{-1}}\left(1-\alpha/2\right)\right) \sqrt{\upsilon}
-$$
-$$
-L(y) = y +  \left(\phi^{{-1}}\left(1-\alpha/2\right) - g(\phi^{{-1}}\left(\alpha/2\right)\right) \sqrt{\upsilon}
-$$
 ```{r asymptotic-skew}
 # ci.method = "asymptotic", trans = "skew"
 dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, trans = "skew")
@@ -150,3 +97,215 @@ dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, trans = "skew")
 ci.asymptotic(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, trans = "skew")
 ```
 
+
+## Moment matching (`ci.method = "moments"`)
+
+Following Dobson et al (1991), an approximate confidence interval can be obtained as a linear function of the confidence interval for a single Poisson paramenter ($X = \sum_{i=1}^k X_i$) where the confidence interval for this *unweighted* sum of poisson parameters $\sum_{i=1}^k \theta_i$ is $\left(X_L,X_U \right)$.
+
+An approximate confidence interval for the *weighted* sum of $\theta$ is
+
+$$
+T_L = Y + \sqrt{\frac{\upsilon}{y}}\left(X_L - X\right)
+$$
+$$
+T_U = Y + \sqrt{\frac{\upsilon}{y}}\left(X_U - X\right)
+$$
+
+A number of methods for estimating $\left(X_L,X_L\right)$ are implemented in `dsrci`
+
+### Dobson (exact) (`type = "dobson"`)
+```{r moments-dobson}
+# ci.method = "moments", type = "dobson" 
+# note type = "dobson" is the default
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, ci.method = "moments", type = "dobson")
+# using ci.moments
+ci.moments(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95)
+```
+
+### Boise-Monson (`type = "boise.monson"`)
+
+
+```{r moments-boise}
+# ci.method = "moments", type = "boise.monson" 
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, ci.method = "moments", type = "boise.monson")
+# using ci.moments
+ci.moments(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, type = "boise.monson")
+```
+
+
+### Normal approximation (`type = "normal"`)
+
+```{r moments-normal}
+# ci.method = "moments", type = "normal" 
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, ci.method = "moments", type = "normal")
+# using ci.moments
+ci.moments(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, type = "normal")
+```
+
+### Wilson-Hilferty (`type = "wilson.hilferty"`)
+
+```{r moments-wilson}
+# ci.method = "moments", type = "wilson.hilferty" 
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, ci.method = "moments", type = "wilson.hilferty")
+# using ci.moments
+ci.moments(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, type = "wilson.hilferty")
+```
+
+### Byar's method (`type = "byar"`)
+
+
+```{r moments-byar}
+# ci.method = "moments", type = "byar" 
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, ci.method = "moments", type = "byar")
+# using ci.moments
+ci.moments(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, type = "byar")
+```
+
+
+### Exact mid-*p* confidence interval
+
+```{r moments-midp}
+# ci.method = "moments", type = "midp" 
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, ci.method = "moments", type = "midp")
+# using ci.moments
+ci.moments(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, type = "midp")
+```
+
+
+### Approximation to mid-*p* confidence interval
+
+```{r moments-approx.midp}
+# ci.method = "moments", type = "approx.midp" 
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, ci.method = "moments", type = "approx.midp")
+# using ci.moments
+ci.moments(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, type = "approx.midp")
+```
+
+### Simple Approximation to mid-*p* confidence interval
+
+
+```{r moments-simple.midp}
+# ci.method = "moments", type = "approx.midp" 
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, ci.method = "moments", type = "simple.midp")
+# using ci.moments
+ci.moments(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, type = "simple.midp")
+```
+
+## Gamma distribution
+
+All Gamma-distribution methods call `asht::wspoissonTest`
+
+### Fay and Feuer (`type = "max")
+
+```{r gamma-max}
+# ci.method = "gamma", type = "max" (this is the default type)
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, ci.method = "gamma", type = "max")
+# using ci.gamma
+ci.gamma(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, type = "max")
+```
+
+### Mid-*p* (`type = "midp"`)
+
+```{r gamma-midp}
+# ci.method = "gamma", type = "midp"
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, ci.method = "gamma", type = "midp")
+# using ci.gamma
+ci.gamma(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, type = "midp")
+```
+
+### Tiwari et al 2006 `mean` (`type = "mean"`)
+
+```{r gamma-mean}
+# ci.method = "gamma", type = "mean" 
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, ci.method = "gamma", type = "mean")
+# using ci.gamma
+ci.gamma(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, type = "mean")
+```
+
+### Tiwari et al 2006 `minmaxavg` (`type = "minmaxavg"`)
+
+```{r gamma-minmaxavg}
+# ci.method = "gamma", type = "minmaxavg" 
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, ci.method = "gamma", type = "minmaxavg")
+# using ci.gamma
+ci.gamma(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, type = "minmaxavg")
+```
+
+### Tiwari et al 2006  (`type = "tcz"`)
+
+```{r gamma-tcz}
+# ci.method = "gamma", type = "tcz" 
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, ci.method = "gamma", type = "tcz")
+# using ci.gamma
+ci.gamma(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, type = "tcz")
+```
+
+## Beta Distribution
+
+### Tiwari et al 2006  (`type = "tcz"`)
+
+```{r beta-tcz}
+# ci.method = "beta", type = "tcz" 
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, ci.method = "beta", type = "tcz")
+# using ci.beta
+ci.beta(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, type = "tcz")
+```
+
+### Tiwari et al 2006 Continuity Correction (`type = "cc"`)
+
+```{r beta-cc}
+# ci.method = "beta", type = "cc" 
+dsr(x = xfive, n =  nfive, w = ntotal, mult = 1e5, level = 0.95, ci.method = "beta", type = "cc")
+# using ci.beta
+ci.beta(xfive, ntotal/(nfive*sum(ntotal)), level = 0.95, type = "cc")
+```
+
+# Comparison of Methods
+
+```{r all-methods}
+# a function to loop through methods and return a data.frame
+loop_methods <- function(list, level = 0.95, x = xfive, n = nfive, w= ntotal, mult = 1e5, ci.method){
+  # loop through "types"
+  results <- lapply(list, dsr, level = level, x = x, w = w,n = n, mult = mult,ci.method = ci.method)
+  # combine into a single data.frame
+  results <- do.call(rbind,lapply(results, as.data.frame))
+}
+trans <- c("none", "log", "cube.root", "skew")
+asymp.results <- loop_methods(trans , ci.method = "asymptotic")
+m.types <- c("dobson", "boise.monson", "normal", "wilson.hilferty", "byar", 
+    "midp", "approx.midp", "simple.midp")
+moments.results <- loop_methods(m.types, ci.method = "moments")
+g.types <- c("max", "midp", "mean", "minmaxavg", "tcz")
+gamma.results <- loop_methods(g.types, , ci.method = "gamma")
+b.types <- c("tcz", "cc")
+beta.results <- loop_methods(b.types, ci.method = "beta")
+boot.results <- as.data.frame(dsr(xfive, nfive, ntotal, mult = 1e5, ci.method = 'bootstrap'))
+
+all.results <- rbind(asymp.results, moments.results,
+                     gamma.results, beta.results,
+                     boot.results)
+```
+
+```{r show-results, results='asis'}
+knitr::kable(all.results[,c("ci.method", "method.arg", "estimate", "lower", "upper")])
+```
+
+# References
+
+
+Dobson, AJ, Kuulasmaa, K, Eberle, E and Scherer, J (1991)
+'Confidence intervals for weighted sums of Poisson parameters',*Statistics in Medicine*, **10**: 457—462.
+
+Swift, MB (1995). 'Simple confidence intervals for standardized rates based on the approximate bootstrap method', *Statistics in Medicine*, **14**, 1875—1888.
+
+Fay & Feuer (1997). 'Confidence intervals for directly standardized rates: a method based on the gamma distribution.' *Statistics in Medicine*. **16**: 791-801.
+
+Tiwari, Clegg, & Zou (2006). 'Efficient interval estimation for age-adjusted cancer rates.' *Statistical Methods in Medical Research* **15**: 547-569.
+
+Ng, Filardo, & Zheng (2008). 'Confidence interval estimating procedures for standardized incidence rates.' *Computational Statistics and Data Analysis* **52**: 3501-3516.
+
+Fay MP (2010). 'Two-sided Exact Tests and Matching Confidence Intervals for Discrete Data'.  *R Journal* **2**(1):53-58.
+
+Fay & Kim (2017). 'Confidence intervals for directly standardized rates using mid-p gamma intervals.' *Biometrical Journal*. doi:10.1002/bimj.201600111.
+
+Fay  MP (2017). '`asht`: Applied Statistical Hypothesis Tests'. *`R` package version 0.9.* https://CRAN.R-project.org/package=asht

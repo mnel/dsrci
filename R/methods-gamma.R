@@ -38,5 +38,6 @@ ci.gamma <- function(x, w, level,
   }
   attr(ci, "estimate") <- y
   attr(ci, "level") <- level
+  attr(ci, "method.arg") <- type
   ci
 }

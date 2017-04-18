@@ -40,6 +40,7 @@ ci.asymptotic <- function(x, w, level,
     "skew" =   y + (z - edgeworth.skew(x,w,rev(z)))*sqrt(v))
   attr(ci, "estimate") <- y
   attr(ci, "level") <- level
+  attr(ci, "method.arg") <- trans
   ci
 }
 
@@ -68,6 +69,7 @@ ci.bootstrap <- function(x, w, level, ...){
   ci <- y+sqrt(v)*numerator/ ((1-a*numerator)^2)
   attr(ci, "estimate") <- y
   attr(ci, "level") <- level
+  attr(ci, "method.arg") <- NA_character_
   ci
 }
 
